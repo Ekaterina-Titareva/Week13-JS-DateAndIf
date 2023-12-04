@@ -1,0 +1,129 @@
+
+@font-face {
+    font-family: "NEXT ART";
+    src: url(../fonts/NEXTART_Bold.woff2) format("woff2"), url(../fonts/NEXTART_Bold.woff) format("woff");
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: "Nunito Sans";
+    src: url(../fonts/NunitoSans_Regular.woff2) format("woff2"), url(../fonts/NunitoSans_Regular.woff) format("woff");
+    font-weight: 400;
+}
+
+* {
+    font-family: "Nunito Sans", Arial, sans-serif;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+
+.title {
+    font-family: "NEXT ART", Arial, sans-serif;
+    font-size: 32px;
+    letter-spacing: 1px;
+    text-align: center;
+    text-shadow: 5px 5px rgba(16, 28, 190, 0.183);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px;
+    padding: 0 25px;
+    min-width: 40%;
+    min-height: 90vh;
+    height: 100%;
+    background-color: rgba(16, 28, 190, 0.183);
+    box-shadow: 0 0 15px 0 rgba(24, 18, 30, 0.281);
+}
+
+.container__title {
+    align-self: center;
+    font-family: "NEXT ART", Arial, sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.btn {
+    font-family: "NEXT ART", Arial, sans-serif;
+    align-self: center;
+    padding: 10px 50px;
+    margin: 10px auto;
+    background: linear-gradient(to bottom, rgba(16, 28, 190, 0.927), rgba(16, 28, 190, 0.566));
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Эффект при наведении курсора */
+.btn:hover {
+    background: linear-gradient(to bottom, rgba(16, 28, 190, 0.566), rgba(16, 28, 190, 0.927));
+}
+
+/* Эффект при нажатии кнопки */
+.btn:active {
+    background: rgb(16, 28, 190);
+}
+
+.comment {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    padding: 16px;
+    height: auto;
+    width: auto;
+    min-width: 100%;
+    box-shadow: 0 0 15px 0 rgba(24,18,30,.12);
+    background: #fdfdfd;
+    gap: 10px;
+    
+}
+
+.comment-nameAndDate {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.comment__name {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.image {
+    width: 120px;
+    height: 150px;
+    padding: 10px 0;
+    object-position: 50% 50%;
+}
+
+.nameless {
+    display: none;
+}
+
+.display-none {
+    display: none;
+}
+
+@media screen and (max-width: 700px) {
+.wrapper {
+    flex-direction: column;
+    gap: 10px;
+}
+.container{
+    min-height: 30vh;
+    align-items: center;
+}
+}
