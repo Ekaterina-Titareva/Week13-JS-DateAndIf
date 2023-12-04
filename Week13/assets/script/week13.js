@@ -20,21 +20,25 @@ const birthday = new Date("2023-05-15");
 console.log(birthday);
 //Задание 6
 // Создайте переменную futureDate и присвойте ей будущую дату (например, через 1 месяц и 10 дней от текущей даты). Значение выведите в консоль.
-const futureDate = new Date("2023-12-25");
-console.log(futureDate);
+const futureDate = new Date();
+futureDate.setDate(currentDate.getDate() + 40);
+console.log(futureDate.toLocaleString());
 //Задание 7
 // Выведите в консоль разницу в днях между futureDate и currentDate
 console.log(Math.round((futureDate - currentDate)/1000/3600/24));
 //Задание 8
 // Создайте переменную pastDate и присвойте ей прошедшую дату (например, 5 дней назад от текущей даты). Значение выведите в консоль.
-const pastDate = new Date("2023-11-21");
-console.log(pastDate);
+const pastDate = new Date();
+pastDate.setDate(currentDate.getDate() - 5);
+console.log(pastDate.toLocaleString());
 //Задание 9
 // Выведите в консоль разницу в днях между currentDate и pastDate
 console.log(Math.round((pastDate - currentDate)/1000/3600/24));
 //Задание 10
 // Создайте переменную nextWeek и присвойте ей дату следующей недели. Значение выведите в консоль.
-const nextWeek = new Date("2023-12-03");
+const nextWeek = new Date();
+nextWeek.setDate(currentDate.getDate() + 7);
+console.log(nextWeek.toLocaleString());
 //Задание 11
 // Выведите в консоль день недели для nextWeek
 console.log(nextWeek.getDay());

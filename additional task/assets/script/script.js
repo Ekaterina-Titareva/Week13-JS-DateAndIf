@@ -21,6 +21,7 @@ const img = document.getElementById('linkResult');
 const comment = document.getElementById('comment');
 const commentResult = document.getElementById('commentResult');
 const date = document.getElementById('date');
+const container = document.getElementById('container');
 
 
 //сначала проверяем, хочет ли пользователь скрыть имя 
@@ -39,22 +40,18 @@ const date = document.getElementById('date');
 }
 
 button.addEventListener('click', function () {
-    let currentDate = new Date();
-
+//корректировка регистра и удаление спецсимволов и пробелов из имени пользователя
     const nameCheckLetter = name.value.toUpperCase().slice(0, 1) + name.value.toLowerCase().slice(1);
     const nameDelBlank = nameCheckLetter.replace(/ |[0-9!@#$%^&*()_+=?\.,/<>|`~"№;:]/g, '');
-    nameResult.textContent = nameDelBlank;
+    // nameResult.textContent = nameDelBlank;
 
-//если радиокнопка скрыть имя не зажата, то пользователю автоматически присваевается имя "username"
-
-if(document.getElementById('namelessYes').checked) {
-    nameResult.textContent = "username";}
+//если радиокнопка скрыть имя зажата, то пользователю автоматически присваевается имя "username", в обратном случае показывется введенное имя
+// document.getElementById('namelessYes').checked ? nameResult.textContent = "username": nameDelBlank
 
 //проверяем ссылку на картинку на недопустимые символы
 
     const linkDelBlank = link.value.replace(/ |[!@#$^*()+\,<>`~"]/g, '');
-    img.src = linkDelBlank;
-    img.classList.remove('display-none');
+    // img.src = linkDelBlank;
 
 //если пользователь не ввел ссылку на аватар, появится стандартная аватарка 
 //стандартные аватары (6 шт) подставляются в рандомном порядке
@@ -75,24 +72,41 @@ let randomAvatar = [
 './assets/icons/avatar6.svg',
 ];
 
-//при пустом поле ссылки рандомно выводим картинку с помощью ранее созданной функции с массивом в качестве параметра
-if (link.value === "") {
-img.src = arrayRandElement(randomAvatar);
-}
+//при пустом поле ссылки рандомно выводим картинку с помощью ранее созданной функции с массивом в качестве параметра, в обратном случае показывется введенная сыллка
+// link.value === "" ? arrayRandElement(randomAvatar) : linkDelBlank;
 
 //проверяем текст комментария на спам с помощью уже созданной ранее функции
-    commentResult.textContent = checkSpam(comment.value);
+    // commentResult.textContent = checkSpam(comment.value);
 
 //указываем дату и время отправки комментария
+let currentDate = new Date();
 
-//устранение бага с минутами
+//устранение бага с минутами и датой меньше 10
 let currentMinutes = currentDate.getMinutes();
 if (currentMinutes.toString().length === 1) {
     currentMinutes = `0${currentMinutes}`
 }
+let currentDay = currentDate.getDate();
+if (currentDay.toString().length === 1) {
+    currentDay = `0${currentDay}`
+}
 
 //выводим дату и время
-date.textContent = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()} ${currentDate.getHours()}:${currentMinutes}`;
+// date.textContent = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDay} ${currentDate.getHours()}:${currentMinutes}`;
+
+container.innerHTML += `
+<div class="comment">
+    <img id="linkResult" class="image" src="${link.value === "" ? arrayRandElement(randomAvatar) : linkDelBlank}" alt="photo" />
+    <div class="comment-text">
+        <div class="comment-nameAndDate">
+            <p id="nameResult" class="comment__name">${document.getElementById('namelessYes').checked ? nameResult.textContent = "username": nameDelBlank}</p>
+            <p id="date">${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDay} ${currentDate.getHours()}:${currentMinutes}</p>
+        </div>
+        <p id="commentResult">${checkSpam(comment.value)}</p>
+        </div>
+    </div>
+</div>
+`;
 
 //очищение полей ввода
     name.value = "";
